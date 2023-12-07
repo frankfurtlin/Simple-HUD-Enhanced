@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "simplehudenhanced",
+  "version": "${version}",
+  "name": "Simple Hud Enhanced",
+  "description": "A Simple Mod that enhances the game's HUD by introducing customizable elements and features to display information.",
+  "authors": [
+    "SoRadGaming"
+  ],
+  "contributors": [
+    "yutotakano",
+    "alerouzic",
+    "frankfurtlin"
+  ],
+  "contact": {
+    "homepage": "https://github.com/frankfurtlin/Simple-HUD-Enhanced",
+    "issues": "https://github.com/frankfurtlin/Simple-HUD-Enhanced/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/frankfurtlin/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.frankfurtlin.simpleHudEnhanced.SimpleHudEnhancedClient"
+    ],
+    "main": [
+      "com.frankfurtlin.simpleHudEnhanced.SimpleHudEnhanced"
+    ],
+    "modmenu": [
+      "com.frankfurtlin.simpleHudEnhanced.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "simpleHudEnhanced.mixins.json"
+  ],
+  "suggests": {
+    "modmenu": ">=${modmenu_version}"
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": ">=${fabric_version}",
+    "minecraft": ">=${minecraft_version} <=${minecraft_version_next}"
+  }
+}

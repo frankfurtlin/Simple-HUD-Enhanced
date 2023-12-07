@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.frankfurtlin.simpleHudEnhanced.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "StatusEffectInstanceMixin",
+    "TpsMixin$ClientConnectionMixin"
+  ],
+  "client": [
+    "GameRender",
+    "KeyboardMixin",
+    "StatusEffectInstanceMixin",
+    "TpsMixin$ClientPlayNetworkHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
