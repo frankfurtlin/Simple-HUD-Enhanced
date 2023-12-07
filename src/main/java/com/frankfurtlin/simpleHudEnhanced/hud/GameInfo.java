@@ -132,6 +132,17 @@ public class GameInfo {
             time / 24000 + String.format(", time: %d:%02d", hour, minute);
     }
 
+    public String getMoonPhase() {
+        if (!config.statusElements.toggleMoonPhase) {
+            return "";
+        }
+
+        int size = (int) (this.player.getWorld().getMoonSize() * 100);
+        float phase = this.player.getWorld().getMoonPhase();
+        return Text.translatable("text.hud.simpleHudEnhanced.moonSize").getString() + ": " + size + "% " +
+            (phase >= 3 ? "↑" : "↓");
+    }
+
     public String getSystemTime() {
         if (!config.statusElements.toggleSystemTime) {
             return "";

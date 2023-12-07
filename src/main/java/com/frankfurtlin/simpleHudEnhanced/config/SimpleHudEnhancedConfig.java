@@ -73,6 +73,8 @@ public class SimpleHudEnhancedConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean toggleGameTime = true;
         @ConfigEntry.Gui.Tooltip
+        public boolean toggleMoonPhase = true;
+        @ConfigEntry.Gui.Tooltip
         public boolean toggleSystemTime = true;
         @ConfigEntry.Gui.Tooltip
         public boolean togglePing = false;

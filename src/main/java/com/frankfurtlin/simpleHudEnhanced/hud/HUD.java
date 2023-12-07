@@ -61,6 +61,7 @@ public class HUD {
         hudInfo.add(GameInformation.getBiome());
         hudInfo.add(GameInformation.getSystemTime());
         hudInfo.add(GameInformation.getGameTime());
+        hudInfo.add(GameInformation.getMoonPhase());
         hudInfo.add(GameInformation.getPing());
         hudInfo.add(GameInformation.getTPS());
         hudInfo.add(GameInformation.getMovement());
