@@ -67,6 +67,8 @@ public class SimpleHudEnhancedConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean toggleBiome = true;
         @ConfigEntry.Gui.Tooltip
+        public boolean toggleStructure = true;
+        @ConfigEntry.Gui.Tooltip
         public boolean togglePlayerSpeed = true;
         @ConfigEntry.Gui.Tooltip
         public boolean toggleLightLevel = false;
@@ -82,6 +84,14 @@ public class SimpleHudEnhancedConfig implements ConfigData {
         public boolean toggleFPS = true;
         @ConfigEntry.Gui.Tooltip
         public boolean toggleTPS = false;
+        @ConfigEntry.Gui.Tooltip
+        public boolean toggleChunk = false;
+        @ConfigEntry.Gui.Tooltip
+        public boolean toggleEntity= false;
+        @ConfigEntry.Gui.Tooltip
+        public boolean toggleParticle = false;
+        @ConfigEntry.Gui.Tooltip
+        public boolean toggleCPUMEM = false;
         @ConfigEntry.Gui.Tooltip
         public boolean toggleMovement = false;
     }

@@ -1,10 +1,12 @@
 package com.frankfurtlin.simpleHudEnhanced.hud;
 
 import com.frankfurtlin.simpleHudEnhanced.config.SimpleHudEnhancedConfig;
-import com.frankfurtlin.simpleHudEnhanced.utli.TpsTracker;
+import com.frankfurtlin.simpleHudEnhanced.utli.CPUMonitorCalc;
 import com.frankfurtlin.simpleHudEnhanced.utli.Utilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.WorldRenderer;
+import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -82,6 +84,14 @@ public class GameInfo {
         }
 
         return Utilities.getBiome(this.client.world, this.player);
+    }
+
+    public String getStructure() {
+        if (!config.statusElements.toggleStructure || this.client.world == null) {
+            return "";
+        }
+
+        return Utilities.getStructure(this.client);
     }
 
     public String getFPS() {
@@ -171,11 +181,80 @@ public class GameInfo {
     }
 
     public String getTPS() {
-        if (!config.statusElements.toggleTPS) {
+        IntegratedServer integratedServer = this.client.getServer();
+        if (!config.statusElements.toggleTPS || integratedServer == null) {
             return "";
         }
-        return String.format(Text.translatable("text.hud.simpleHudEnhanced.tps").getString() +
-            ": %.2f", TpsTracker.INSTANCE.getTickRate());
+        return Text.translatable("text.hud.simpleHudEnhanced.tps").getString() +
+            String.format(": %.0f, ", Math.min(20.0f, 1000 / integratedServer.getTickTime())) +
+            Text.translatable("text.hud.simpleHudEnhanced.mspt").getString() +
+            String.format(": %.0f", integratedServer.getTickTime());
+    }
+
+    public String getChunk(){
+        WorldRenderer worldRenderer = this.client.worldRenderer;
+        if (!config.statusElements.toggleChunk || worldRenderer == null) {
+            return "";
+        }
+        return Text.translatable("text.hud.simpleHudEnhanced.renderChunk").getString() +
+            String.format(": %d, ", worldRenderer.getCompletedChunkCount()) +
+            Text.translatable("text.hud.simpleHudEnhanced.totalChunk").getString() +
+            String.format(": %.0f, ", worldRenderer.getChunkCount()) +
+            Text.translatable("text.hud.simpleHudEnhanced.viewDistance").getString() +
+            String.format(": %.0f", worldRenderer.getViewDistance());
+    }
+
+    public String getEntity(){
+        WorldRenderer worldRenderer = this.client.worldRenderer;
+        if (!config.statusElements.toggleEntity || worldRenderer == null) {
+            return "";
+        }
+        String renderEntity = worldRenderer.getEntitiesDebugString().split(",")[0].substring(3).split("/")[0];
+        String totalEntity = worldRenderer.getEntitiesDebugString().split(",")[0].substring(3).split("/")[1];
+        return Text.translatable("text.hud.simpleHudEnhanced.renderEntity").getString() + ": " + renderEntity + ", " +
+            Text.translatable("text.hud.simpleHudEnhanced.totalEntity").getString() + ": " + totalEntity;
+    }
+
+    public String getEntityInfo1(){
+        WorldRenderer worldRenderer = this.client.worldRenderer;
+        if (!config.statusElements.toggleEntity || worldRenderer == null) {
+            return "";
+        }
+        return Utilities.getEntity(client).split("#")[0];
+    }
+
+    public String getEntityInfo2(){
+        WorldRenderer worldRenderer = this.client.worldRenderer;
+        if (!config.statusElements.toggleEntity || worldRenderer == null) {
+            return "";
+        }
+        return Utilities.getEntity(client).split("#")[1].substring(2);
+    }
+
+    public String getParticle(){
+        if (!config.statusElements.toggleParticle) {
+            return "";
+        }
+        return Text.translatable("text.hud.simpleHudEnhanced.particle").getString() + ": " +
+            this.client.particleManager.getDebugString();
+    }
+
+    public String getCpuMem(){
+        if (!config.statusElements.toggleCPUMEM) {
+            return "";
+        }
+
+        int processCpuLoad = (int)CPUMonitorCalc.getInstance().getProcessCpu();
+
+        long l = Runtime.getRuntime().maxMemory();
+        long m = Runtime.getRuntime().totalMemory();
+        long n = Runtime.getRuntime().freeMemory();
+        long o = m - n;
+
+        return Text.translatable("text.hud.simpleHudEnhanced.cpu").getString() + ": " +
+            processCpuLoad + "% " +
+            Text.translatable("text.hud.simpleHudEnhanced.mem").getString() +
+            String.format(": %2d%% %03d/%03dMB", o * 100L / l, o / 1024L / 1024L, l / 1024L / 1024L);
     }
 
     public String getMovement(){

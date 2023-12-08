@@ -59,11 +59,18 @@ public class HUD {
         hudInfo.add(GameInformation.getSpeed());
         hudInfo.add(GameInformation.getLightLevel());
         hudInfo.add(GameInformation.getBiome());
+        hudInfo.add(GameInformation.getStructure());
         hudInfo.add(GameInformation.getSystemTime());
         hudInfo.add(GameInformation.getGameTime());
         hudInfo.add(GameInformation.getMoonPhase());
         hudInfo.add(GameInformation.getPing());
         hudInfo.add(GameInformation.getTPS());
+        hudInfo.add(GameInformation.getChunk());
+        hudInfo.add(GameInformation.getEntity());
+        hudInfo.add(GameInformation.getEntityInfo1());
+        hudInfo.add(GameInformation.getEntityInfo2());
+        hudInfo.add(GameInformation.getParticle());
+        hudInfo.add(GameInformation.getCpuMem());
         hudInfo.add(GameInformation.getMovement());
         return hudInfo;
     }

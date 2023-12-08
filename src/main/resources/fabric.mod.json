@@ -5,12 +5,7 @@
   "name": "Simple Hud Enhanced",
   "description": "A Simple Mod that enhances the game's HUD by introducing customizable elements and features to display information.",
   "authors": [
-    "SoRadGaming"
-  ],
-  "contributors": [
-    "yutotakano",
-    "alerouzic",
-    "frankfurtlin"
+    "Frankfurtlin"
   ],
   "contact": {
     "homepage": "https://github.com/frankfurtlin/Simple-HUD-Enhanced",
@@ -18,7 +13,7 @@
   },
   "license": "MIT",
   "icon": "assets/frankfurtlin/icon.png",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "client": [
       "com.frankfurtlin.simpleHudEnhanced.SimpleHudEnhancedClient"
