@@ -6,12 +6,12 @@ visibility, and other settings of these elements, providing a personalized HUD e
 tailored to individual preferences though the [Mod Menu mod](https://modrinth.com/mod/modmenu).
 
 ## Images
-![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/images/config1.png)
-![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/images/config2.png)
-![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/images/config3.png)
-![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/images/config4.png)
-![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/images/config5.png)
-![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/images/game.png)
+![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/blob/main/images/config1.png)
+![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/blob/main/images/config2.png)
+![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/blob/main/images/config3.png)
+![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/blob/main/images/config4.png)
+![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/blob/main/images/config5.png)
+![](https://github.com/frankfurtlin/Simple-HUD-Enhanced/blob/main/images/game.png)
 
 ## Installation
 1. Download the latest version of the mod from the [releases page]()
