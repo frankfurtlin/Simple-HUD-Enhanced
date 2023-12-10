@@ -103,6 +103,8 @@
   "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleCPUMEM": "CPU MEM Info",
   "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleMovement.@Tooltip": "Show your movement in the HUD",
   "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleMovement": "Movement",
+  "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleExperience.@Tooltip": "Show your experience in the HUD",
+  "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleExperience": "Experience",
 
   "text.autoconfig.simpleHudEnhanced.option.toggleEffectsStatus.@Tooltip": "Show your Effects status timer in the HUD",
   "text.autoconfig.simpleHudEnhanced.option.toggleEffectsStatus": "Effects Status Ring",

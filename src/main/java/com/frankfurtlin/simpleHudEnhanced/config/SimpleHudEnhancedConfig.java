@@ -93,6 +93,8 @@ public class SimpleHudEnhancedConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean toggleCPUMEM = false;
         @ConfigEntry.Gui.Tooltip
+        public boolean toggleExperience = true;
+        @ConfigEntry.Gui.Tooltip
         public boolean toggleMovement = false;
     }
 

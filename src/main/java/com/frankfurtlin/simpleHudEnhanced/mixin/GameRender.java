@@ -9,12 +9,14 @@ import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.texture.StatusEffectSpriteManager;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,14 +34,24 @@ import java.util.concurrent.CompletableFuture;
 
 @Environment(EnvType.CLIENT)
 @Mixin(value = InGameHud.class)
-public class GameRender {
+public abstract class GameRender {
     @Unique
     private HUD hud;
+
     @Unique
     private SimpleHudEnhancedConfig config;
+
     @Shadow
     @Final
     private MinecraftClient client;
+
+    @Shadow
+    private int scaledHeight;
+
+    @Shadow
+    public abstract TextRenderer getTextRenderer();
+
+
     @Inject(method = "<init>(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/render/item/ItemRenderer;)V", at = @At(value = "RETURN"))
     private void onInit(MinecraftClient client, ItemRenderer render, CallbackInfo ci) {
         // Get Config
@@ -80,5 +92,42 @@ public class GameRender {
     @Inject(method = "clear", at = @At("HEAD"))
     private void onClear(CallbackInfo ci) {
         DebugStatus.setDebugStatus(false);
+    }
+
+    @Inject(at = @At("RETURN"), method = "renderExperienceBar")
+    public void renderExperienceProgress(DrawContext drawContext, int x, CallbackInfo info) {
+        if (!AutoConfig.getConfigHolder(SimpleHudEnhancedConfig.class).getConfig().statusElements.toggleExperience) {
+            return;
+        }
+
+        PlayerEntity player = this.client.player;
+        if (player == null) {
+            return;
+        }
+
+        int experienceNeeded = player.getNextLevelExperience();
+        float currentProgress = player.experienceProgress;
+        int currentExperience = (int) (currentProgress * experienceNeeded);
+
+        int x1 = x - 2;
+        int x2 = x + 182 + 2;
+        int y = this.scaledHeight - 32 + 4;
+
+        this.renderNumber(drawContext, String.valueOf(currentExperience), x1, y, true);
+        this.renderNumber(drawContext, String.valueOf(experienceNeeded), x2, y, false);
+    }
+
+    @Unique
+    private void renderNumber(
+        DrawContext drawContext, String number, int x, int y, boolean rightAligned) {
+        int renderX = x + (rightAligned ? -this.getTextRenderer().getWidth(number) : 0);
+        int renderY = y + Math.round((5 - this.getTextRenderer().fontHeight) / 2f);
+
+        TextRenderer textRenderer = this.getTextRenderer();
+        drawContext.drawText(textRenderer, number, renderX + 1, renderY, 0, false);
+        drawContext.drawText(textRenderer, number, renderX - 1, renderY, 0, false);
+        drawContext.drawText(textRenderer, number, renderX, renderY + 1, 0, false);
+        drawContext.drawText(textRenderer, number, renderX, renderY - 1, 0, false);
+        drawContext.drawText(textRenderer, number, renderX, renderY, 0xFFFFFF, false);
     }
 }

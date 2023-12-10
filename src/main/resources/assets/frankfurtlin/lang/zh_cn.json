@@ -103,6 +103,8 @@
   "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleCPUMEM": "CPU、内存使用",
   "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleMovement.@Tooltip": "显示移动状态",
   "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleMovement": "移动状态",
+  "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleExperience.@Tooltip": "显示经验条状态",
+  "text.autoconfig.simpleHudEnhanced.option.statusElements.toggleExperience": "经验条状态",
 
   "text.autoconfig.simpleHudEnhanced.option.toggleEffectsStatus.@Tooltip": "显示效果状态进度条",
   "text.autoconfig.simpleHudEnhanced.option.toggleEffectsStatus": "效果状态进度条",
